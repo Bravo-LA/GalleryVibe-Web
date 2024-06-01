@@ -1,0 +1,118 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+
+}
+
+:root {
+    --color-primary: #4085BC;
+    --color-black: #333;
+    --color-yellow: #EBFD73;
+}
+
+.primary-background {
+    background-color: var(--color-primary);
+}
+
+.primary-text {
+    color: var(--color-primary);
+}
+
+.black-background {
+    background-color: var(--color-black);
+}
+
+.black-text {
+    color: var(--color-black);
+}
+
+.yellow-background {
+    background-color: var(--color-yellow);
+}
+
+.yellow-text {
+    color: var(--color-yellow);
+}
+
+@font-face {
+    font-family: 'spacebook';
+    src: url('./assets/fonts/spacebook.ttf');
+}
+
+.font-spacebook {
+    font-family: 'spacebook', sans-serif;
+}
+
+.container-pattern {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(5, 5, 5, .2) 2px, transparent 0);
+    background-size: 50px 50px;
+    background-position: -5px -5px;
+}
+
+/* Input Custom */
+
+.container-form {
+    height: 5rem;
+}
+
+.inputForm {
+    border: 1.5px solid #d8ddd8;
+    border-radius: 5px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.input {
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.inputForm:focus-within {
+    border: 1.5px solid var(--color-primary);
+}
+
+.form button {
+    align-self: flex-end;
+}
+
+.form-alert {
+    color: #b90d0d;
+    font-weight: 500;
+    font-size: x-small;
+    transform: translateY(-.5rem);
+}
+
+/* Buttom Custom */
+
+.button-submit {
+    margin: 20px 0 10px 0;
+    background-color: var(--color-black);
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+    cursor: pointer;
+}

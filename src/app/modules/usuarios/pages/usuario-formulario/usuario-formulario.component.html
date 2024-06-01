@@ -1,0 +1,155 @@
+<section class="container-pattern">
+    <section class="vh-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 text-black">
+                    <div class="card bg-transparent border-0">
+                        <div class="mt-2 card-header text-center bg-transparent border-0 pt-4">
+                            <span class="display-6  fw-bold ls-tight font-spacebook">
+                                Ingresa tus Datos <br />
+                            </span>
+                        </div>
+                        <div class="card-body px-md-5 bg-transparent">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                class="form d-flex flex-column bg-white p-3 gap-2 bg-transparent">
+
+                                <div class="row row-cols-1 row-cols-md-2">
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Nombres</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-person-arms-up"></i>
+                                            <input placeholder="Ingresa tus nombres" class="input" type="text"
+                                                autocomplete="off" formControlName="nombres">
+                                        </div>
+                                        @if (nombres.invalid && (nombres.dirty || nombres.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Apellidos</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-person-arms-up"></i>
+                                            <input placeholder="Ingresa tus apellidos" class="input" type="text"
+                                                autocomplete="off" formControlName="apellidos">
+                                        </div>
+                                        @if (apellidos.invalid && (apellidos.dirty || apellidos.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="row row-cols-1 row-cols-md-2 mt-3">
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Cédula</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-person-vcard-fill"></i>
+                                            <input placeholder="Ingresa tu cédula" class="input" type="text"
+                                                autocomplete="off" formControlName="cedula">
+                                        </div>
+                                        @if (cedula.invalid && (cedula.dirty || cedula.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Correo</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-envelope-fill"></i>
+                                            <input placeholder="Ingresa tu correo" class="input" type="email"
+                                                autocomplete="off" formControlName="correo">
+                                        </div>
+                                        @if (correo.invalid && (correo.dirty || correo.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="row row-cols-1 row-cols-md-2 mt-3">
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Genero</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-gender-ambiguous"></i>
+                                            <select class="input me-1" autocomplete="off" formControlName="genero">
+                                                <option value="" disabled hidden selected>Seleccione su genero</option>
+                                                @for (item of generos; track $index) {
+                                                <option [value]="item.id">{{item.genero}}</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        @if (genero.invalid && (genero.dirty || genero.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Fecha Nacimiento</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-calendar-check-fill"></i>
+                                            <input class="input pe-2" type="date" autocomplete="off"
+                                                formControlName="fechaNac">
+                                        </div>
+                                        @if (fechaNac.invalid && (fechaNac.dirty || fechaNac.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="row row-cols-1 row-cols-md-2 mt-3">
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Usuario</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-person-circle"></i>
+                                            <input placeholder="Ingresa tu usuario" class="input" type="text"
+                                                autocomplete="off" formControlName="usuario">
+                                        </div>
+                                        @if (usuario.invalid && (usuario.dirty || usuario.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                    <div class="container-form">
+                                        <div class="flex-column black-text">
+                                            <label class="fw-medium mb-1">Contraseña</label>
+                                        </div>
+                                        <div class="inputForm">
+                                            <i class="bi bi-key-fill"></i>
+                                            <input placeholder="Ingresa una contraseña" class="input" type="text"
+                                                autocomplete="off" formControlName="contrasena">
+                                        </div>
+                                        @if (contrasena.invalid && (contrasena.dirty || contrasena.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="button-submit mt-4">Registrarse</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 px-0 d-none d-sm-block shadow-sm">
+                    <ngb-carousel #carousel [interval]="4000" [pauseOnHover]="pauseOnHover">
+                        @for (img of images; track img; let i = $index) {
+                        <ng-template ngbSlide>
+                            <img [src]="img" alt="image" class="w-100 vh-100"
+                                style="object-fit: cover; object-position: left;" />
+                        </ng-template>
+                        }
+                    </ngb-carousel>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,23 @@
+section div {
+  padding-top: 3px;
+}
+
+img {
+  width: 210px;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: var(--color-primary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.p {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  margin: 5px 0;
+  text-decoration: none;
+}

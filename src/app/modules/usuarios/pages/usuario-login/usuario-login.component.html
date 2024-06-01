@@ -1,0 +1,57 @@
+<section class="container-pattern">
+    <div class="px-4 py-4 px-md-5 bg-transparent">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-start">
+                    <span class="my-5 display-4 fw-bold ls-tight font-spacebook">
+                        Gallery Vire <br />
+                        <span class="text-primary display-5 fw-bold">Descubre, comparte, inspira.</span>
+                    </span>
+                    <p class="black-text py-4">
+                        Aquí, el arte y la pasión se encuentran. Comparte tus pinturas, descubre obras inspiradoras y
+                        conéctate con una comunidad vibrante de artistas y amantes del arte. Juntos, superamos la
+                        desconexión y creamos un espacio donde cada pincelada cuenta.
+                    </p>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card border-dark">
+                        <div class="card-header text-center bg-transparent border-0 pt-4">
+                            <img src="../../../../../assets/image/logo.png" alt="logo">
+                        </div>
+                        <div class="card-body px-md-5">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form d-flex flex-column bg-white p-3 gap-2">
+                                <div class="container-form">
+                                    <div class="flex-column black-text">
+                                        <label class="fw-medium mb-1">Username</label>
+                                    </div>
+                                    <div class="inputForm">
+                                        <i class="bi bi-person-circle"></i>
+                                        <input placeholder="Ingresa tu usuario" class="input" type="text" autocomplete="off" formControlName="usuario">
+                                    </div>
+                                    @if (usuario.invalid && (usuario.dirty || usuario.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                    }
+                                </div>
+                                <div class="container-form">
+                                    <div class="flex-column mt-3">
+                                        <label class="fw-medium mb">Password </label>
+                                    </div>
+                                    <div class="inputForm">
+                                        <i class="bi bi-shield-lock-fill"></i>
+                                        <input placeholder="Enter your Password" class="input" type="password"  autocomplete="off" formControlName="contrasena">
+                                    </div>
+                                    @if (contrasena.invalid && (contrasena.dirty || contrasena.touched)) {
+                                        <span class="form-alert">Campo requerido</span>
+                                    }
+                                </div>                            
+                                <button type="submit" class="button-submit mt-5">Iniciar Sesión</button>
+                                <a routerLink="/registrar-usuario" class="p">No tienes una cuenta?? <span class="span">Regístrate</span></a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
