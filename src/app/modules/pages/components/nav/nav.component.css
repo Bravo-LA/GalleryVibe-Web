@@ -1,0 +1,13 @@
+i, span {
+    color: #666666;
+    font-size: medium;
+}
+
+li {
+    cursor: pointer;
+}
+
+li:hover i, li:hover span {
+   color: #333;
+}
+

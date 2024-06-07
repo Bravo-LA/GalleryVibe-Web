@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationService } from '../../../../shared/services/notification.service';
 import { UsuarioService } from '../../services/usuario.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-login',
@@ -21,6 +21,7 @@ export default class UsuarioLoginComponent {
   loading: boolean = false
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private _usuarioService: UsuarioService,
     private _notificationService: NotificationService,
@@ -46,7 +47,10 @@ export default class UsuarioLoginComponent {
     this._usuarioService.authentication(credenciales).subscribe({
       next: (data: string) => {
         if (data == '') this._notificationService.showWarning('Lo sentimos', 'Credenciales incorrectas')
-        else this._notificationService.showSuccess('Enhorabuena', 'Bienvenido a Gallery Vire')
+        else {
+          this._notificationService.showSuccess('Enhorabuena', 'Bienvenido a Gallery Vire')
+          this.router.navigate(['/home'])
+        }
       }
     })
 

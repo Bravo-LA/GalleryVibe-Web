@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse py-3 d-flex justify-content-between align-content-center">
+            <ul class="navbar-nav ps-2">
+                @for (item of items; track $index) {
+                <li class="nav-item me-5">
+                    <i [class]="item.icon"></i>
+                    <span class="ms-2">{{item.label}}</span>
+                </li>
+                }
+            </ul>
+            <a class=" pe-3" routerLink="/informacion-usuario">
+                <i class="pi pi-cog"></i>
+            </a>
+        </div>
+    </div>
+</nav>
