@@ -1,7 +1,8 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
-  "compilerOptions": {
+  "compilerOptions": {    
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -22,7 +23,13 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@usuarios/*" : ["src/app/modules/usuarios/*"],
+      "@pinturas/*" : ["src/app/modules/pinturas/*"],
+      "@environment/*" : ["src/environments/*"],
+    },
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

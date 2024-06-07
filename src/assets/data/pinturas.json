@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "titulo": "Flores en primavera",
+        "descripcion": "Una hermosa pintura de flores en un campo en primavera.",
+        "fechaCreacion": "2023-04-15",
+        "tipo": {
+            "id": 1,
+            "descripcion": "Naturaleza"
+        },
+        "precio": 300,
+        "tecnica": "Acuarela",
+        "imageUrl": "https://cdn.culturagenial.com/es/imagenes/mona-lisa-0.jpg",
+        "usuarioId": 101
+    },
+    {
+        "id": 2,
+        "titulo": "Autorretrato",
+        "descripcion": "Un autorretrato expresivo del artista en un estilo abstracto.",
+        "fechaCreacion": "2022-10-22",
+        "tipo": {
+            "id": 2,
+            "descripcion": "Retrato"
+        },
+        "precio": 500,
+        "tecnica": "Óleo sobre lienzo",
+        "imageUrl": "https://example.com/autorretrato.jpg",
+        "usuarioId": 102
+    },
+    {
+        "id": 3,
+        "titulo": "Paisaje montañoso",
+        "descripcion": "Una pintura que muestra majestuosas montañas cubiertas de nieve.",
+        "fechaCreacion": "2023-01-10",
+        "tipo": {
+            "id": 3,
+            "descripcion": "Paisaje"
+        },
+        "precio": 700,
+        "tecnica": "Acrílico",
+        "imageUrl": "https://example.com/paisaje-montanoso.jpg",
+        "usuarioId": 103
+    },
+    {
+        "id": 4,
+        "titulo": "Bodegón de frutas",
+        "descripcion": "Un bodegón vibrante que presenta una variedad de frutas frescas.",
+        "fechaCreacion": "2022-09-05",
+        "tipo": {
+            "id": 4,
+            "descripcion": "Naturaleza muerta"
+        },
+        "precio": 400,
+        "tecnica": "Témpera",
+        "imageUrl": "https://example.com/bodegon-de-frutas.jpg",
+        "usuarioId": 104
+    },
+    {
+        "id": 5,
+        "titulo": "Abstracción en azul",
+        "descripcion": "Una obra abstracta que juega con tonos de azul y formas geométricas.",
+        "fechaCreacion": "2023-03-20",
+        "tipo": {
+            "id": 5,
+            "descripcion": "Abstracto"
+        },
+        "precio": 600,
+        "tecnica": "Acrílico sobre lienzo",
+        "imageUrl": "https://example.com/abstraccion-en-azul.jpg",
+        "usuarioId": 105
+    },
+    {
+        "id": 6,
+        "titulo": "Figura en movimiento",
+        "descripcion": "Una pintura que captura el movimiento de una figura humana en danza.",
+        "fechaCreacion": "2022-12-12",
+        "tipo": {
+            "id": 6,
+            "descripcion": "Figurativo"
+        },
+        "precio": 550,
+        "tecnica": "Óleo sobre madera",
+        "imageUrl": "https://example.com/figura-en-movimiento.jpg",
+        "usuarioId": 106
+    },
+    {
+        "id": 7,
+        "titulo": "Sueños surrealistas",
+        "descripcion": "Una obra surrealista que presenta paisajes oníricos y figuras fantásticas.",
+        "fechaCreacion": "2023-02-28",
+        "tipo": {
+            "id": 7,
+            "descripcion": "Surrealismo"
+        },
+        "precio": 900,
+        "tecnica": "Acrílico y collage",
+        "imageUrl": "https://example.com/suenos-surrealistas.jpg",
+        "usuarioId": 107
+    },
+    {
+        "id": 8,
+        "titulo": "Amanecer en la playa",
+        "descripcion": "Una pintura que muestra un hermoso amanecer en la costa.",
+        "fechaCreacion": "2022-07-18",
+        "tipo": {
+            "id": 1,
+            "descripcion": "Naturaleza"
+        },
+        "precio": 750,
+        "tecnica": "Acuarela sobre papel",
+        "imageUrl": "https://example.com/amanecer-en-la-playa.jpg",
+        "usuarioId": 108
+    },
+    {
+        "id": 9,
+        "titulo": "Retrato de la sonrisa",
+        "descripcion": "Un retrato realista que destaca la sonrisa de una persona.",
+        "fechaCreacion": "2023-06-10",
+        "tipo": {
+            "id": 2,
+            "descripcion": "Retrato"
+        },
+        "precio": 480,
+        "tecnica": "Carboncillo",
+        "imageUrl": "https://example.com/retrato-de-la-sonrisa.jpg",
+        "usuarioId": 109
+    },
+    {
+        "id": 10,
+        "titulo": "Abstracto en rojo",
+        "descripcion": "Una obra abstracta que utiliza tonos de rojo y formas orgánicas.",
+        "fechaCreacion": "2023-08-05",
+        "tipo": {
+            "id": 5,
+            "descripcion": "Abstracto"
+        },
+        "precio": 680,
+        "tecnica": "Mixta sobre lienzo",
+        "imageUrl": "https://example.com/abstracto-en-rojo.jpg",
+        "usuarioId": 110
+    }
+]
