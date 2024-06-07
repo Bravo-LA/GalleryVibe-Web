@@ -15,7 +15,3 @@ export interface Genero {
     genero:     string
 }
 
-export interface Rol {
-    id:         number
-    rol:        string
-}
