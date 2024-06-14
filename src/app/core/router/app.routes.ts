@@ -30,5 +30,10 @@ export const routes: Routes = [
         path: 'gestion-pintura',
         title: 'Pintura | Gallery Vibe',
         loadComponent: () => import('../../modules/pinturas/pages/pintura-list/pintura-list.component')
+    },
+    {
+        path: 'orden-compra',
+        title: 'Orden Compra | Gallery Vibe',
+        loadComponent: () => import('../../modules/ordencompra/pages/orden-compra/orden-compra.component').then(m => m.OrdenCompraComponent)
     }
 ];
