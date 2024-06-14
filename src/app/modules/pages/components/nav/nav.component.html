@@ -4,7 +4,7 @@
             <ul class="navbar-nav ps-2">
                 @for (item of items; track $index) {
                 <li class="nav-item me-5">
-                    <i [class]="item.icon"></i>
+                    <i [class]="item.icon" routerLink="{{item.route}}"></i>
                     <span class="ms-2">{{item.label}}</span>
                 </li>
                 }

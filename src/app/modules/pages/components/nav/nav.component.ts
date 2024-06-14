@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  items: Array<{ label: string, icon: string }> = [];
+  items: Array<{ label: string, icon: string, route:string }> = [];
   
   ngOnInit(): void {
     this.loadItems()
@@ -22,16 +22,25 @@ export class NavComponent implements OnInit {
     this.items = [
       {
         label: 'Home',
-        icon: 'pi pi-home'
+        icon: 'pi pi-home', 
+        route: '/home'
       },
       {
         label: 'Pinturas',
-        icon: 'pi pi-image'
+        icon: 'pi pi-image',
+        route: '/gestion-pintura'
+      },
+      {
+        label: 'Orden de Compra',
+        icon: 'pi pi-shopping-cart',
+        route: '/orden-compra'
       },
       {
         label: 'Contact',
-        icon: 'pi pi-info-circle'
+        icon: 'pi pi-info-circle',
+        route:'/*'
       }
+
     ]
   }
 
