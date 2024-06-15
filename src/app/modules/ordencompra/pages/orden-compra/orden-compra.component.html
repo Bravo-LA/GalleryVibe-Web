@@ -1,0 +1,86 @@
+<div class="container mt-3">
+  <h2 class="text-lila">Órdenes de Compra</h2>
+  <div class="mb-2">
+    <input pInputText type="text" placeholder="Buscar..." (input)="dt.filterGlobal($event, 'contains')"
+      class="form-control" />
+    <button pButton type="button" label="Nueva Orden" icon="pi pi-plus" class="p-button-success ml-2"
+      (click)="openNew()"></button>
+  </div>
+  <p-table #dt [value]="ordenesCompra" [paginator]="true" [rows]="10" [globalFilterFields]="['idUsuario']">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="idOrdenCompra">ID <p-sortIcon field="idOrdenCompra"></p-sortIcon></th>
+        <th pSortableColumn="idUsuario">Usuario <p-sortIcon field="idUsuario"></p-sortIcon></th>
+        <th pSortableColumn="fechaCreacion">Fecha <p-sortIcon field="fechaCreacion"></p-sortIcon></th>
+        <th pSortableColumn="estadoOrden">Estado <p-sortIcon field="estadoOrden"></p-sortIcon></th>
+        <th pSortableColumn="totalOrden">Total <p-sortIcon field="totalOrden"></p-sortIcon></th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-orden>
+      <tr>
+        <td>{{orden.idOrdenCompra}}</td>
+        <td>{{orden.idUsuario}}</td>
+        <td>{{orden.fechaCreacion | date}}</td>
+        <td>{{orden.estadoOrden}}</td>
+        <td>{{orden.totalOrden | currency}}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
+            (click)="openEdit(orden)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            (click)="deleteOrden(orden.idOrdenCompra)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Orden de Compra" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}">
+  <div class="p-fluid">
+    <form [formGroup]="ordenForm" (ngSubmit)="saveOrden()">
+      <div class="p-field">
+        <label for="idUsuario">Usuario</label>
+        <input pInputText id="idUsuario" formControlName="idUsuario" />
+      </div>
+      <div class="p-field">
+        <label for="fechaCreacion">Fecha de Creación</label>
+        <input pInputText id="fechaCreacion" formControlName="fechaCreacion" type="date" />
+      </div>
+      <div class="p-field">
+        <label for="estadoOrden">Estado</label>
+        <input pInputText id="estadoOrden" formControlName="estadoOrden" />
+      </div>
+      <div class="p-field">
+        <label for="totalOrden">Total</label>
+        <input pInputText id="totalOrden" formControlName="totalOrden" type="number" />
+      </div>
+      <div class="p-field">
+        <label for="idImagen">ID Imagen</label>
+        <input pInputText id="idImagen" formControlName="idImagen" />
+      </div>
+      <div class="p-field">
+        <label for="cantidad">Cantidad</label>
+        <input pInputText id="cantidad" formControlName="cantidad" type="number" />
+      </div>
+      <div class="p-field">
+        <label for="precioUnitario">Precio Unitario</label>
+        <input pInputText id="precioUnitario" formControlName="precioUnitario" type="number" />
+      </div>
+      <div class="p-field">
+        <label for="metodoPago">Método de Pago</label>
+        <input pInputText id="metodoPago" formControlName="metodoPago" />
+      </div>
+      <div class="p-field">
+        <label for="direccionEnvio">Dirección de Envío</label>
+        <input pInputText id="direccionEnvio" formControlName="direccionEnvio" />
+      </div>
+      <div class="p-field">
+        <label for="comentariosAdicionales">Comentarios Adicionales</label>
+        <input pInputText id="comentariosAdicionales" formControlName="comentariosAdicionales" />
+      </div>
+      <div class="p-d-flex p-jc-end">
+        <button pButton type="submit" label="Guardar" icon="pi pi-check" class="p-button-success"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
