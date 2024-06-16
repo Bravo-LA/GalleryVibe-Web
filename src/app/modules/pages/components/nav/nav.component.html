@@ -3,15 +3,29 @@
         <div class="collapse navbar-collapse py-3 d-flex justify-content-between align-content-center">
             <ul class="navbar-nav ps-2">
                 @for (item of items; track $index) {
-                <li class="nav-item me-5">
-                    <i [class]="item.icon" routerLink="{{item.route}}"></i>
+                <li class="nav-item me-5" [routerLink]="item.route">
+                    <i [class]="item.icon"></i>
                     <span class="ms-2">{{item.label}}</span>
                 </li>
                 }
             </ul>
-            <a class=" pe-3" routerLink="/informacion-usuario">
-                <i class="pi pi-cog"></i>
-            </a>
+            <div [matMenuTriggerFor]="menu" class="pe-3" style="cursor: pointer;">
+                <i class="pi pi-bars"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/informacion-usuario">
+                        <i class="pi pi-user-edit pe-3"></i>
+                        <span>Actualizar Perfil</span>
+                    </button>
+                    <button mat-menu-item (click)="openEliminar()">
+                        <i class="pi pi-trash pe-3"></i>
+                        <span>Eliminar Cuenta</span>
+                    </button>
+                    <button mat-menu-item routerLink="/gestion-generos-list">
+                        <i class="pi pi-users pe-3"></i>
+                        <span>Generos</span>
+                    </button>
+                </mat-menu>
+            </div>
         </div>
     </div>
 </nav>

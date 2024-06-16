@@ -1,13 +1,13 @@
-import { Tipo } from "./tipo"
+import { Tecnica } from "./tecnica"
 
 export interface Pintura {
     id?:             number
     titulo?:         string
     descripcion?:    string
     fechaCreacion?:  Date
-    tipo?:           Tipo
+    tipo?:           string
     precio?:         number
-    tecnica?:        string
+    tecnica?:        Tecnica
     imageUrl?:       string
     usuarioId?:      number
 }

@@ -1,0 +1,46 @@
+<section class="container-pattern">
+    <div class="card bg-transparent border-0">
+        <div class="mt-2 card-header text-center bg-transparent border-0 pt-4">
+            <span class="fs-4  fw-bold ls-tight font-spacebook">
+                Ingresa tus Datos <br />
+            </span>
+        </div>
+        <div class="card-body px-md-3 bg-transparent">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                class="form d-flex flex-column bg-white p-3 gap-2 bg-transparent">
+                <div class="row row-cols-1">
+                    <div class="container-form">
+                        <div class="flex-column black-text">
+                            <label class="fw-medium mb-1">Nombre</label>
+                        </div>
+                        <div class="inputForm">
+                            <i class="bi bi-image-fill"></i>
+                            <input placeholder="Ingresa el nombre" class="input" type="text" autocomplete="off"
+                                formControlName="nombre">
+                        </div>
+                        @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+                            <span class="form-alert">Campo requerido</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 mt-3">
+                    <div class="container-form">
+                        <div class="flex-column black-text">
+                            <label class="fw-medium mb-1">Descripcion</label>
+                        </div>
+                        <div class="inputForm">
+                            <i class="bi bi-calendar-minus-fill"></i>
+                            <input placeholder="Ingresa la descripcion" class="input me-2" type="text" autocomplete="off" formControlName="descripcion">
+                        </div>
+                        @if (descripcion.invalid && (descripcion.dirty || descripcion.touched)) {
+                        <span class="form-alert">Campo requerido</span>
+                        }
+                    </div>
+                </div>
+
+                <button type="submit" class="button-submit mt-2 mb-0">{{btnText}}</button>
+            </form>
+        </div>
+    </div>
+</section>

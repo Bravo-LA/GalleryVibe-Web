@@ -25,11 +25,21 @@ export const routes: Routes = [
         path: 'registrar-usuario',
         title: 'Registrar | Gallery Vibe',
         loadComponent: () => import('../../modules/usuarios/pages/usuario-formulario/usuario-formulario.component')
+    },    
+    { 
+        path: 'gestion-generos-list',
+        title: 'Generos | Gallery Vibe',
+        loadComponent: () => import('../../modules/usuarios/pages/usuario-generos-list/usuario-generos-list.component')
     },
     { 
         path: 'gestion-pintura',
         title: 'Pintura | Gallery Vibe',
         loadComponent: () => import('../../modules/pinturas/pages/pintura-list/pintura-list.component')
+    },
+    { 
+        path: 'tecnicas-gestion',
+        title: 'Técnicas | Gallery Vibe',
+        loadComponent: () => import('../../modules/pinturas/pages/pintura-tecnica-list/pintura-tecnica-list.component')
     },
     {
         path: 'orden-compra',

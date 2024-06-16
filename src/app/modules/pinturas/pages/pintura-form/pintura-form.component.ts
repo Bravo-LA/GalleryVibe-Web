@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Pintura } from '@pinturas/interfaces/pintura';
-import { Tipo } from '@pinturas/interfaces/tipo';
+import { Tecnica } from '@pinturas/interfaces/tecnica';
 import { PinturasService } from '@pinturas/services/pinturas.service';
-import { TiposService } from '@pinturas/services/tipos.service';
+import { TecnicasService } from '@pinturas/services/tecnicas.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
@@ -21,11 +21,11 @@ export class PinturaFormComponent implements OnInit {
   form!: FormGroup
   loading: boolean = false
   btnText: string = 'Agregar'
-  list: Tipo[] = []
+  list: Tecnica[] = []
 
   constructor(
     private fb: FormBuilder,
-    private _tiposService: TiposService,
+    private _tecnicasService: TecnicasService,
     private _pinturaService: PinturasService,
     @Inject(MAT_DIALOG_DATA) public data: Pintura,
     private _notificationService: NotificationService,
@@ -34,7 +34,7 @@ export class PinturaFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.inicializarForm()
-    this.loadTipos()
+    this.loadTecnicas()
     if (this.data) {
       this.btnText = "Modificar"
       this.inicializarFormData(this.data)
@@ -58,16 +58,16 @@ export class PinturaFormComponent implements OnInit {
       titulo: data.titulo,
       descripcion: data.descripcion,
       fechaCreacion: data.fechaCreacion,
-      tipo: data.tipo?.id,
+      tipo: data.tipo,
       precio: data.precio,
-      tecnica: data.tecnica,
+      tecnica: data.tecnica?.nombre,
       //imageUrl: data.imageUrl
     })
   }
 
-  private loadTipos() {
+  private loadTecnicas() {
     this.loading = true
-    this._tiposService.get().subscribe({
+    this._tecnicasService.get().subscribe({
       next: (data) => this.list = data
     })
   }

@@ -7,6 +7,7 @@ import { Pintura } from '@pinturas/interfaces/pintura';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { PinturaFormComponent } from '../pintura-form/pintura-form.component';
 import { PinturaCardComponent } from '../pintura-card/pintura-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pintura-list',
@@ -24,6 +25,7 @@ export default class PinturaListComponent implements OnInit {
   public loading: boolean = false
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private _pinturaService: PinturasService,
     private _notificationService: NotificationService
@@ -68,6 +70,10 @@ export default class PinturaListComponent implements OnInit {
       data: pintura,
       width: '350px'
     })
+  }
+
+  openTenicas(){
+    this.router.navigate(['/tecnicas-gestion'])
   }
 
 }

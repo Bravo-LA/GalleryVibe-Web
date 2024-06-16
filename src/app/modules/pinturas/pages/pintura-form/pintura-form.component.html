@@ -24,14 +24,14 @@
                     </div>
                     <div class="container-form">
                         <div class="flex-column black-text">
-                            <label class="fw-medium mb-1">Tipo</label>
+                            <label class="fw-medium mb-1">Técnica</label>
                         </div>
                         <div class="inputForm">
                             <i class="bi bi-list-task"></i>
-                            <select formControlName="tipo" class="input">
+                            <select formControlName="tecnica" class="input">
                                 <option value="" disabled selected>Seleccione</option>
                                 @for (item of list; track $index) {
-                                    <option [value]="item.id">{{item.descripcion}}</option>
+                                    <option value="item.id">{{item.nombre}}</option>
                                 }
                             </select>
                         </div>
@@ -71,11 +71,11 @@
                 <div class="row row-cols-2 mt-3">
                     <div class="container-form">
                         <div class="flex-column black-text">
-                            <label class="fw-medium mb-1">Técnica</label>
+                            <label class="fw-medium mb-1">Tipo</label>
                         </div>
                         <div class="inputForm">
                             <i class="bi bi-highlights"></i>
-                            <input class="input" type="text" placeholder="Ingrese la técnica" autocomplete="off" formControlName="tecnica">
+                            <input class="input" type="text" placeholder="Ingrese la técnica" autocomplete="off" formControlName="tipo">
                         </div>
                         @if (tecnica.invalid && (tecnica.dirty || tecnica.touched)) {
                         <span class="form-alert">Campo requerido</span>

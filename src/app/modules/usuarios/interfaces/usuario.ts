@@ -11,7 +11,8 @@ export interface Usuario {
 }
 
 export interface Genero {
-    id:         number
+    id?:        number
     genero:     string
+    fechaReg?:  Date
 }
 

@@ -6,7 +6,7 @@ import { NotificationService } from '../../../../shared/services/notification.se
 import { Genero, Usuario } from '../../interfaces/usuario';
 import { GeneroService } from '../../services/genero.service';
 import { Router } from '@angular/router';
-
+ 
 @Component({
   selector: 'app-usuario-formulario',
   standalone: true,
@@ -56,7 +56,7 @@ export default class UsuarioFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = this.imagesPath.map(image => `assets/image/carousel/${image}`);
-    this.generos = this.generoService.getGeneros
+    this.generos = this.generoService.getGeneros()
   }
 
   onSubmit() {

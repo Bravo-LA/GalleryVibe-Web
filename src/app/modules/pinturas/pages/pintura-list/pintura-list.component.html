@@ -3,8 +3,13 @@
         <p-table #dt2 dataKey="id" [value]="list" [rows]="8" styleClass="p-datatable-sm" [loading]="loading"
             [paginator]="true" [globalFilterFields]="['titulo', 'tipo.descripcion', 'tecnica', 'fechaCreacion']">
             <ng-template pTemplate="caption">
-                <div class="row row-cols-2">
-                    <div class="container-form col-10 h-auto ps-0">
+                <div class="row row-cols-3">
+                    <div class="col-1 ps-1">
+                        <button (click)="openTenicas()" type="button" class="button-submit m-0">
+                            <span class="small">Técnicas</span>
+                        </button>
+                    </div>
+                    <div class="container-form col-9 h-auto">
                         <div class="inputForm">
                             <i class="bi bi-search"></i>
                             <input placeholder="Buscar..." class="input" type="text" autocomplete="off"
@@ -46,8 +51,8 @@
                             class="shadow-sm border border-1 border-black" />
                         <span class="ml-1 vertical-align-middle ps-3">{{ list.titulo }}</span>
                     </td>
-                    <td>{{ list.tipo.descripcion }}</td>
-                    <td>{{ list.tecnica }}</td>
+                    <td>{{ list.tipo }}</td>
+                    <td>{{ list.tecnica.nombre }}</td>
                     <td>{{ list.fechaCreacion | date:"MMM / dd / yyyy" }}</td>
                     <td>
                         <div class="row row-cols-3 m-0 gap-1 d-flex justify-content-center align-items-center">
@@ -57,7 +62,6 @@
                             <button type="submit" class="button-submit button-error" (click)="openEliminar(list)">
                                 <i class="bi bi-person-fill-x"></i>
                             </button>
-
                         </div>
                     </td>
                 </tr>
@@ -66,16 +70,17 @@
                 <tr>
                     <td colspan="7">
                         <div class="ps-5 py-1 row row-cols-2">
-                            <div class="p-0 col-auto" style="height: 8rem;">
+                            <div class="p-0 col-auto" style="height: 10rem;">
                                 <img 
                                     [alt]="list.titulo"
                                     src="https://www.worldhistory.org/img/r/p/500x600/12663.jpg?v=1701938529"
                                     [style]="'view-transition-name: image-' + list.id"
                                     class="shadow-sm border border-1 border-black h-100" />
                             </div>
-                            <div class="">
+                            <div>
                                 <span class="font-spacebook">Descripción ${{list.precio}}</span>
                                 <p class="text-descripcion">{{list.descripcion}}</p>
+                                <p class="text-descripcion">{{list.tecnica.descripcion}}</p>
                             </div>
                         </div>
                     </td>

@@ -1,0 +1,28 @@
+<section>
+    <div class="card border-black rounded-1">
+        <div class="mt-2 card-header text-center bg-transparent border-0 pt-4">
+            <span class="fs-5 fw-bold ls-tight font-spacebook">
+                {{title}} Genero
+            </span>
+        </div>
+        <div class="card-body px-md-1 bg-transparent">
+            <form [formGroup]="form" (ngSubmit)="onAgregar()"
+                class="form d-flex flex-column bg-white p-3 gap-2 bg-transparent">
+                <div class="container-form">
+                    <div class="flex-column black-text">
+                        <label class="fw-medium mb-1">Genero</label>
+                    </div>
+                    <div class="inputForm">
+                        <i class="bi bi-gender-trans"></i>
+                        <input placeholder="Ingresa el genero" class="input" type="text" autocomplete="off"
+                            formControlName="genero">
+                    </div>
+                    @if (genero.invalid && (genero.dirty || genero.touched)) {
+                    <span class="form-alert">Campo requerido</span>
+                    }
+                </div>
+                <button type="submit" class="button-submit mt-4">Registrar</button>
+            </form>
+        </div>
+    </div>
+</section>
