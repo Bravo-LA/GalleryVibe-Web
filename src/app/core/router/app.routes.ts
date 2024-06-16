@@ -45,5 +45,20 @@ export const routes: Routes = [
         path: 'orden-compra',
         title: 'Orden Compra | Gallery Vibe',
         loadComponent: () => import('../../modules/ordencompra/pages/orden-compra/orden-compra.component').then(m => m.OrdenCompraComponent)
-    }
+    },
+  {
+        path: 'venta-pinturas',
+        title: 'Venta | Gallery Vibe',
+        component: PresentacionComponent,
+    },
+    {
+        path: 'registroV-pinturas',
+        title: 'RegistroV | Gallery Vibe',
+        component: ProcesoComponent,
+    },
+    {
+        path: 'info-pinturas',
+        title: 'Información venta | Gallery Vibe',
+        component: InfoComponent,
+    },
 ];
