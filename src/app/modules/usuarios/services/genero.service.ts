@@ -1,38 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Genero } from '../interfaces/usuario';
+import { Genero } from '../interfaces/genero';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@environment/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneroService {
 
-  generos: Genero[] = [
-    { id: 1, genero: 'Masculino', fechaReg: new Date('2023-01-01T10:00:00Z') },
-    { id: 2, genero: 'Femenino', fechaReg: new Date('2023-01-02T10:00:00Z') },
-    { id: 3, genero: 'Otros', fechaReg: new Date('2023-01-03T10:00:00Z') },
-  ];
+  private readonly url: string = environment.endpoint + 'Genero/'
 
+  constructor(private _http: HttpClient) { }
 
-  getGeneros(): Genero[] {
-    return this.generos
+  getGeneros(): Observable<Genero[]> {
+    return this._http.get<Genero[]>(this.url)
   }
 
-  addGenero(objeto: Genero): void {
-    this.generos.push(objeto);
+  addGenero(objeto: Genero): Observable<string> {
+    return this._http.post(this.url, objeto, { responseType: 'text' })
   }
 
-  updateGenero(objeto: Genero) {
-    const index = this.generos.findIndex(g => g.id === objeto.id);
-    if (index !== -1) {
-      this.generos[index] = { ...this.generos[index], ...objeto };
-    }
+  updateGenero(objeto: Genero): Observable<string> {
+    return this._http.put(this.url, objeto, { responseType: 'text' })
   }
 
-  deleteGenero(id: number) {
-    const index = this.generos.findIndex(g => g.id === id);
-    if (index !== -1) {
-      this.generos.splice(index, 1);
-    }
+  deleteGenero(id: number): Observable<string> {
+    return this._http.delete(this.url + id, { responseType: 'text' })
   }
 
 }

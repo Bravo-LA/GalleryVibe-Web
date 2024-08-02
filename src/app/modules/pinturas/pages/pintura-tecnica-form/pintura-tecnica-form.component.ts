@@ -69,8 +69,8 @@ export class PinturaTecnicaFormComponent implements OnInit {
     this.loading = true
 
     const updateOrCreate = this.data
-      ? this._tecnicasService.put(tecnica)
-      : this._tecnicasService.post(tecnica)
+      ? this._tecnicasService.updateTecnica(tecnica)
+      : this._tecnicasService.addTecnica(tecnica)
 
     updateOrCreate.subscribe({
       next: (data) => {

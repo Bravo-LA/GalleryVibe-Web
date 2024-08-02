@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
     RouterOutlet
   ],
   template: `
-    <p-toast/>
+    <p-toast position="bottom-right"/>
     <router-outlet />
   `
 })

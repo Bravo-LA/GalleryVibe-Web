@@ -81,7 +81,7 @@
                                             <select class="input me-1" autocomplete="off" formControlName="genero">
                                                 <option value="" disabled hidden selected>Seleccione su genero</option>
                                                 @for (item of generos; track $index) {
-                                                <option [value]="item.id">{{item.genero}}</option>
+                                                <option [value]="item.id">{{item.descripcion}}</option>
                                                 }
                                             </select>
                                         </div>

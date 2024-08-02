@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Genero } from '@usuarios/interfaces/usuario';
+import { Genero } from '@usuarios/interfaces/genero';
 import { GeneroService } from '@usuarios/services/genero.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
@@ -48,7 +48,7 @@ export class UsuarioGenerosCardComponent implements OnInit {
   private initFromEdit(data: Genero) {
     this.title = "Modificar"
     this.form.patchValue({
-      genero: data.genero,
+      genero: data.descripcion,
     });
   }
 
@@ -60,21 +60,25 @@ export class UsuarioGenerosCardComponent implements OnInit {
     }
 
     const genero: Genero = {
-      id: Math.floor(Math.random() * Date.now()),
-      genero: this.genero.value,
-      fechaReg: new Date
+      descripcion: this.genero.value,
     }
 
     if (this.data) {
       genero.id = this.data.id
     }
 
-    this.data ?
+    const updateOrCreate = this.data ?
       this.generoService.updateGenero(genero) :
       this.generoService.addGenero(genero)
+    
+    updateOrCreate.subscribe({
+      next:(data) =>{
+        this._notificationService.showSuccess('Atención', 'Acción realizada')
+        this.form.reset()
+        this.dialogRef.close()
+      } 
+    })
 
-    this.form.reset()
-    this.dialogRef.close()
   }
 
   get genero() { return this.form.get('genero')! }

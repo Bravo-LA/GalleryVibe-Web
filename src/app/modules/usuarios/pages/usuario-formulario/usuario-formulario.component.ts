@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuarioService } from '../../services/usuario.service';
 import { NotificationService } from '../../../../shared/services/notification.service';
-import { Genero, Usuario } from '../../interfaces/usuario';
+import { Genero } from '../../interfaces/genero';
+import { Usuario } from '../../interfaces/usuario';
 import { GeneroService } from '../../services/genero.service';
 import { Router } from '@angular/router';
- 
+
 @Component({
   selector: 'app-usuario-formulario',
   standalone: true,
@@ -56,7 +57,9 @@ export default class UsuarioFormularioComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = this.imagesPath.map(image => `assets/image/carousel/${image}`);
-    this.generos = this.generoService.getGeneros()
+    this.generoService.getGeneros().subscribe({
+      next: (data) => this.generos = data
+    })
   }
 
   onSubmit() {
@@ -71,18 +74,20 @@ export default class UsuarioFormularioComponent implements OnInit {
       apellidos: this.apellidos.value,
       cedula: this.cedula.value,
       correo: this.correo.value,
-      genero: this.genero.value,
+      generoId: this.genero.value,
       fechNac: this.fechaNac.value,
-      usuario: this.usuario.value,
-      contrasena: this.contrasena.value
+      username: this.usuario.value,
+      password: this.contrasena.value
     }
 
-    this._usuarioService.registrarUsuario(usuario).subscribe({
-      next: (data: boolean) => {
+    this._usuarioService.addUsuario(usuario).subscribe({
+      next: (data) => {
         if (data) {
           this._notificationService.showSuccess('Ouh yes!', 'Ahora inicia sesión')
           this.router.navigate(['/login'])
-        } else this._notificationService.showError('Lo sentimos', 'Ha ocurrido un error')
+        } else {
+          this._notificationService.showError('Lo sentimos', 'Ha ocurrido un error')
+        }
       }
     })
 
@@ -99,3 +104,4 @@ export default class UsuarioFormularioComponent implements OnInit {
   get contrasena() { return this.form.get('contrasena')! }
 
 }
+ 

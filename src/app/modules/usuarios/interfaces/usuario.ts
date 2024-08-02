@@ -1,18 +1,11 @@
 export interface Usuario {
-    id?:        number
-    nombres:    string
-    apellidos:  string
-    cedula:     string
-    correo:     string
-    genero:     number
-    fechNac:    Date
-    usuario:    string
-    contrasena: string
+    id?: number
+    nombres?: string
+    apellidos?: string
+    cedula?: string
+    correo?: string
+    generoId?: number
+    fechNac?: Date
+    username?: string
+    password?: string
 }
-
-export interface Genero {
-    id?:        number
-    genero:     string
-    fechaReg?:  Date
-}
-

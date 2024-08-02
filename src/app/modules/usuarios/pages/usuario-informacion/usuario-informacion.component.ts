@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Genero, Usuario } from '@usuarios/interfaces/usuario';
+import { Genero } from '@usuarios/interfaces/genero';
+import { Usuario } from '@usuarios/interfaces/usuario';
 import { GeneroService } from '@usuarios/services/genero.service';
 import { UsuarioService } from '@usuarios/services/usuario.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-usuario-informacion',
@@ -15,20 +17,22 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   templateUrl: './usuario-informacion.component.html',
   styleUrl: './usuario-informacion.component.css'
 })
-export default class UsuarioInformacionComponent {
+export default class UsuarioInformacionComponent implements OnInit {
 
   form!: FormGroup
   loading: boolean = false
   generos: Genero[] = []
+  usuarioLogeado!: Usuario
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private generoService: GeneroService,
+    private _router: Router,
+    private _fb: FormBuilder,
+    private _token: TokenService,
+    private _generoService: GeneroService,
     private _usuarioService: UsuarioService,
     private _notificationService: NotificationService,
   ) {
-    this.form = this.fb.group({
+    this.form = this._fb.group({
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       cedula: ['', Validators.required],
@@ -40,6 +44,32 @@ export default class UsuarioInformacionComponent {
     })
   }
 
+  ngOnInit(): void {
+    this.loadGeneros()
+    this.usuarioLogeado = this._token.getUsuario()
+    this._usuarioService.getUsuario(this.usuarioLogeado.id!).subscribe({
+      next: (data: Usuario) => this.initForm(data)
+    })
+  }
+
+  initForm(usuario: Usuario){    
+    this.form .patchValue({
+      nombres: usuario.nombres,
+      apellidos: usuario.apellidos,
+      cedula: usuario.cedula,
+      correo: usuario.correo,
+      genero: usuario.generoId,
+      usuario: usuario.username,
+      contrasena: usuario.password
+    })
+  }
+
+  loadGeneros(){
+    this._generoService.getGeneros().subscribe({
+      next: (data) => this.generos = data
+    })
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched()
@@ -48,15 +78,24 @@ export default class UsuarioInformacionComponent {
     }
 
     const usuario: Usuario = {
+      id: this.usuarioLogeado.id,
       nombres: this.nombres.value,
       apellidos: this.apellidos.value,
       cedula: this.cedula.value,
       correo: this.correo.value,
-      genero: this.genero.value,
+      generoId: this.genero.value,
       fechNac: this.fechaNac.value,
-      usuario: this.usuario.value,
-      contrasena: this.contrasena.value
+      username: this.usuario.value,
+      password: this.contrasena.value
     }
+
+    this._usuarioService.updateUsuario(usuario).subscribe({
+      next: (data) => {
+        this._notificationService.showSuccess('Atención',data)
+        this._router.navigate(['/home'])
+      }
+    })
+
   }
 
   get nombres() { return this.form.get('nombres')! }

@@ -8,6 +8,8 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { PinturaFormComponent } from '../pintura-form/pintura-form.component';
 import { PinturaCardComponent } from '../pintura-card/pintura-card.component';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { Usuario } from '@usuarios/interfaces/usuario';
 
 @Component({
   selector: 'app-pintura-list',
@@ -27,6 +29,7 @@ export default class PinturaListComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private _token: TokenService,
     private _pinturaService: PinturasService,
     private _notificationService: NotificationService
   ) { }
@@ -37,8 +40,11 @@ export default class PinturaListComponent implements OnInit {
 
   private cargarPinturas() {
     this.loading = true;
-    this._pinturaService.get().subscribe({
+    const usuario: Usuario = this._token.getUsuario()
+    this._pinturaService.getPinturasPorIdUsuario(usuario.id!).subscribe({
       next: (data) => {
+        console.log(data);
+        
         this.list = data
         this.loading = false
       }
@@ -51,6 +57,8 @@ export default class PinturaListComponent implements OnInit {
       autoFocus: false,
       disableClose: false,
       width: '550px'
+    }).afterClosed().subscribe({
+      next: () => this.cargarPinturas()
     })
   }
 
@@ -60,6 +68,8 @@ export default class PinturaListComponent implements OnInit {
       disableClose: false,
       data: pintura,
       width: '550px'
+    }).afterClosed().subscribe({
+      next: () => this.cargarPinturas()
     })
   }
 
@@ -69,6 +79,8 @@ export default class PinturaListComponent implements OnInit {
       disableClose: false,
       data: pintura,
       width: '350px'
+    }).afterClosed().subscribe({
+      next: () => this.cargarPinturas()
     })
   }
 

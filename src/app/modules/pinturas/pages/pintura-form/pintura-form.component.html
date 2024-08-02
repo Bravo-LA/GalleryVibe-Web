@@ -31,7 +31,7 @@
                             <select formControlName="tecnica" class="input">
                                 <option value="" disabled selected>Seleccione</option>
                                 @for (item of list; track $index) {
-                                    <option value="item.id">{{item.nombre}}</option>
+                                    <option [value]="item.id">{{item.nombre}}</option>
                                 }
                             </select>
                         </div>
@@ -86,7 +86,7 @@
                             <label class="fw-medium mb-1">Imagen</label>
                         </div>
                         <div class="inputForm file-select">
-                            <input class="input pe-2" type="file" autocomplete="off" formControlName="imageUrl">
+                            <input class="input pe-2" type="file" autocomplete="off" formControlName="imageUrl" (change)="onFileSelected($event)">
                         </div>
                         @if (imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)) {
                             <span class="form-alert">Campo requerido</span>

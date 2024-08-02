@@ -9,25 +9,28 @@ import { Observable, of } from 'rxjs';
 })
 export class PinturasService {
 
-  private myAppUrl: string = environment.endpoint
-  private myApiUrl: string = ''
+  private readonly url: string = environment.endpoint + 'Pintura/'
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
-  post(pintura: Pintura): Observable<void> {
-    return of()
+  getPinturas(): Observable<Pintura[]> {
+    return this._http.get<Pintura[]>(this.url)
   }
 
-  put(pintura: Pintura): Observable<void> {
-    return of()
+  getPinturasPorIdUsuario(id: number): Observable<Pintura[]> {
+    return this._http.get<Pintura[]>(this.url+id)
   }
 
-  delete(id: number): Observable<void> {
-    return of()
+  addPintura(objeto: Pintura): Observable<string> {
+    return this._http.post(this.url, objeto, { responseType: 'text' })
   }
 
-  get(): Observable<Pintura[]> {
-    return this.http.get<Pintura[]>('/assets/data/pinturas.json');
+  updatePintura(objeto: Pintura): Observable<string> {
+    return this._http.put(this.url, objeto, { responseType: 'text' })
+  }
+
+  deletePintura(id: number): Observable<string> {
+    return this._http.delete(this.url + id, { responseType: 'text' })
   }
 
 }

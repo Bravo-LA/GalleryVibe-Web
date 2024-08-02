@@ -9,22 +9,29 @@ import { Usuario } from '@usuarios/interfaces/usuario';
 })
 export class UsuarioService {
 
-  private myAppUrl: string = environment.endpoint
-  private myApiUrl: string = ''
 
-  constructor(private http: HttpClient) { }
+  private readonly url: string = environment.endpoint + 'Usuario/'
 
-  authentication(
-    credenciales:
-      { usuario: string, contrasena: string }
-  ): Observable<any> {
-    //return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, credenciales)
-    return of('-')
+  constructor(private _http: HttpClient) { }
+
+  authentication(credenciales: { username: string, password: string }): Observable<string> {
+    return this._http.post(this.url + 'login', credenciales, { responseType: 'text' })
   }
 
-  registrarUsuario(usuario: Usuario): Observable<boolean>{
-    //return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, usuario)
-    return of(true)
+  getUsuario(id: number): Observable<Usuario> {
+    return this._http.get<Usuario>(this.url+id)
+  }
+
+  addUsuario(objeto: Usuario): Observable<string> {
+    return this._http.post(this.url, objeto, { responseType: 'text' })
+  }
+
+  updateUsuario(objeto: Usuario): Observable<string> {
+    return this._http.put(this.url, objeto, { responseType: 'text' })
+  }
+
+  deleteUsuario(id: number): Observable<string> {
+    return this._http.delete(this.url + id, { responseType: 'text' })
   }
 
 }

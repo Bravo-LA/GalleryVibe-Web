@@ -32,7 +32,7 @@ export default class PinturaTecnicaListComponent {
 
   private cargarTecnicas() {
     this.loading = true;
-    this._tecnicasService.get().subscribe({
+    this._tecnicasService.getTecnicas().subscribe({
       next: (data) => {
         this.list = data
         this.loading = false
@@ -46,6 +46,8 @@ export default class PinturaTecnicaListComponent {
       autoFocus: false,
       disableClose: false,
       width: '450px'
+    }).afterClosed().subscribe({
+      next: () => this.cargarTecnicas()
     })
   }
 
@@ -55,12 +57,18 @@ export default class PinturaTecnicaListComponent {
       disableClose: false,
       data: tecnica,
       width: '450px'
+    }).afterClosed().subscribe({
+      next: () => this.cargarTecnicas()
     })
   }
 
   openEliminar(tecnica: Tecnica) {
-    this._tecnicasService.delete(tecnica.id!)
-    this.cargarTecnicas()
+    this._tecnicasService.deleteTecnica(tecnica.id!).subscribe({
+      next: (data) => {
+        this._notificationService.showSuccess('Atención',data)
+        this.cargarTecnicas()
+      }
+    })
   }
 
 }

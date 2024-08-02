@@ -1,7 +1,7 @@
 <div class="container-pattern p-4">
     <section>
         <p-table #dt2 dataKey="id" [value]="list" [rows]="8" styleClass="p-datatable-sm" [loading]="loading"
-            [paginator]="true" [globalFilterFields]="['genero', 'fechaReg']">
+            [paginator]="true" [globalFilterFields]="['genero']">
             <ng-template pTemplate="caption">
                 <div class="row row-cols-2">
                     <div class="container-form col-10 h-auto ps-1">
@@ -21,14 +21,12 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th>Genero</th>
-                    <th>Fecha Registro </th>
                     <th class="text-center">Accion</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-list>
                 <tr>
-                    <td>{{ list.genero }}</td>
-                    <td>{{ list.fechaReg | date:"MM / dd / yyyy" }}</td>
+                    <td>{{ list.descripcion }}</td>
                     <td>
                         <div class="row row-cols-3 m-0 gap-1 d-flex justify-content-center align-items-center">
                             <button type="submit" class="button-submit button-primary" (click)="oepnActualizar(list)">
