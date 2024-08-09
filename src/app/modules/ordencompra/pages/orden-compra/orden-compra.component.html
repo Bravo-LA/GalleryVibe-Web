@@ -9,9 +9,9 @@
   <p-table #dt [value]="ordenesCompra" [paginator]="true" [rows]="10" [globalFilterFields]="['idUsuario']">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="idOrdenCompra">ID <p-sortIcon field="idOrdenCompra"></p-sortIcon></th>
-        <th pSortableColumn="idUsuario">Usuario <p-sortIcon field="idUsuario"></p-sortIcon></th>
-        <th pSortableColumn="fechaCreacion">Fecha <p-sortIcon field="fechaCreacion"></p-sortIcon></th>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="Usuario">Usuario <p-sortIcon field="Usuario"></p-sortIcon></th>
+        <th pSortableColumn="feichaCreacion">Fecha <p-sortIcon field="feichaCreacion"></p-sortIcon></th>
         <th pSortableColumn="estadoOrden">Estado <p-sortIcon field="estadoOrden"></p-sortIcon></th>
         <th pSortableColumn="totalOrden">Total <p-sortIcon field="totalOrden"></p-sortIcon></th>
         <th>Acciones</th>
@@ -19,16 +19,16 @@
     </ng-template>
     <ng-template pTemplate="body" let-orden>
       <tr>
-        <td>{{orden.idOrdenCompra}}</td>
-        <td>{{orden.idUsuario}}</td>
-        <td>{{orden.fechaCreacion | date}}</td>
+        <td>{{orden.id}}</td>
+        <td>{{orden.usuario}}</td>
+        <td>{{orden.feichaCreacion | date}}</td>
         <td>{{orden.estadoOrden}}</td>
         <td>{{orden.totalOrden | currency}}</td>
         <td>
           <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
             (click)="openEdit(orden)"></button>
           <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
-            (click)="deleteOrden(orden.idOrdenCompra)"></button>
+            (click)="deleteOrden(orden.id)"></button>
         </td>
       </tr>
     </ng-template>
@@ -39,8 +39,8 @@
   <div class="p-fluid">
     <form [formGroup]="ordenForm" (ngSubmit)="saveOrden()">
       <div class="p-field">
-        <label for="idUsuario">Usuario</label>
-        <input pInputText id="idUsuario" formControlName="idUsuario" />
+        <label for="Usuario">Usuario</label>
+        <input pInputText id="Usuario" formControlName="Usuario" />
       </div>
       <div class="p-field">
         <label for="fechaCreacion">Fecha de Creación</label>

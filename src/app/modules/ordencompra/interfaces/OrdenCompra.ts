@@ -1,8 +1,8 @@
 export interface OrdenCompra{
 
-    idOrdenCompra: number;
-    idUsuario: number;
-    fechaCreacion: Date;
+    id: number;
+    Usuario: string;
+    feichaCreacion: Date;
     estadoOrden: string;
     totalOrden: number;
     idImagen: number;

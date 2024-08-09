@@ -6,11 +6,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog'; 
 import { CommonModule } from '@angular/common';
+import { OrdenCompraService } from '../../servicios/orden-compra.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Subscriber } from 'rxjs';
+import { ResolveEnd } from '@angular/router';
 
 interface OrdenCompra {
-  idOrdenCompra: number;
-  idUsuario: number;
-  fechaCreacion: Date;
+  id: number;
+  usuario: string;
+  feichaCreacion: Date;
   estadoOrden: string;
   totalOrden: number;
   idImagen: number;
@@ -32,8 +36,11 @@ interface OrdenCompra {
     DialogModule, 
     ButtonModule,
     InputTextModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
+
   ],
+  providers:[OrdenCompraService],
   templateUrl: './orden-compra.component.html',
   styleUrls: ['./orden-compra.component.css']
 })
@@ -43,12 +50,11 @@ export class OrdenCompraComponent implements OnInit {
   displayModal: boolean = false;
   editMode: boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private ordenservicios: OrdenCompraService) { }
 
   ngOnInit(): void {
     this.ordenForm = this.fb.group({
-      idOrdenCompra: [null],
-      idUsuario: [null],
+      Usuario: [null],
       fechaCreacion: [null],
       estadoOrden: [''],
       totalOrden: [null],
@@ -59,6 +65,16 @@ export class OrdenCompraComponent implements OnInit {
       direccionEnvio: [''],
       comentariosAdicionales: ['']
     });
+    this.ObtenerTodos()
+  }
+
+  ObtenerTodos(){
+    this.ordenservicios.ObtenerOrdenCompra().subscribe(
+      res =>{
+        this.ordenesCompra=res
+        console.log(this.ordenesCompra)
+      }
+    )
   }
 
   openNew() {
@@ -74,17 +90,29 @@ export class OrdenCompraComponent implements OnInit {
   }
 
   deleteOrden(id: number) {
-    this.ordenesCompra = this.ordenesCompra.filter(orden => orden.idOrdenCompra !== id);
+    //this.ordenesCompra = this.ordenesCompra.filter(orden => orden.idOrdenCompra !== id);
+    this.ordenservicios.EliminarOrdenCompra(id).subscribe(
+      res=>{
+        console.log(res)
+        this.ngOnInit();
+      }
+    )
   }
 
   saveOrden() {
     if (this.editMode) {
-      const index = this.ordenesCompra.findIndex(orden => orden.idOrdenCompra === this.ordenForm.value.idOrdenCompra);
-      this.ordenesCompra[index] = this.ordenForm.value;
+      //const index = this.ordenesCompra.findIndex(orden => orden.idOrdenCompra === this.ordenForm.value.idOrdenCompra);
+      //this.ordenesCompra[index] = this.ordenForm.value;
     } else {
-      this.ordenForm.value.idOrdenCompra = this.ordenesCompra.length + 1;
-      console.log(this.ordenForm.value);
-      this.ordenesCompra.push(this.ordenForm.value);
+      //this.ordenForm.value.idOrdenCompra = this.ordenesCompra.length + 1;
+      //console.log(this.ordenForm.value);
+      //this.ordenesCompra.push(this.ordenForm.value);
+      this.ordenservicios.GuardarOrdenCompra(this.ordenForm.value).subscribe(
+        res =>{
+          console.log(res)
+          this.ngOnInit();
+        }
+      );
 
     }
     this.displayModal = false;
