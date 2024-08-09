@@ -12,16 +12,9 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Pintura1', precio: 10.07, status: 'Y'},
-  {position: 2, name: 'Pintura2', precio: 4.00, status: 'N' },
-  {position: 3, name: 'Fotografía1', precio: 6.94, status: 'Y'},
-  {position: 4, name: 'Pintura3', precio: 9.01, status: 'Y'},
-  {position: 5, name: 'Fotografía2', precio: 10.81, status: 'N'},
-  {position: 6, name: 'Fotografía3', precio: 12.01, status: 'N'},
-  {position: 7, name: 'Pintura4', precio: 14.00, status: 'N'},
-  {position: 8, name: 'Pintura5', precio: 15.99, status: 'Y'},
-  {position: 9, name: 'Diseño1', precio: 18.99, status: 'Y'},
-  {position: 10, name: 'Diseño2', precio: 20.17, status: 'N'},
+  {position: 1, name: 'Shiba Inu', precio: 10.07, status: 'Y'},
+  {position: 2, name: 'Lirio', precio: 4.00, status: 'Y' },
+
 ];
 
 @Component({
